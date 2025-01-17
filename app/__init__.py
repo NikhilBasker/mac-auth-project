@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for
+from flask import Flask
 from flask_cors import CORS
 from flask_pymongo import PyMongo
 
@@ -24,6 +24,6 @@ def create_app():
 
     @app.route('/')
     def home():
-        return redirect(url_for('api.register'))  # Redirect to the registration endpoint
+        return "<h1>Welcome to MAC Address Authentication Project!</h1><p>Use the /api/register endpoint to register and /api/login to login.</p>"
 
     return app
