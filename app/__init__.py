@@ -12,11 +12,11 @@ def create_app():
     app.config['MONGO_URI'] = "mongodb+srv://nikhilsaravanan944:nikhi09@mac-auth.foem3.mongodb.net/?retryWrites=true&w=majority&appName=mac-auth"
     app.config['SECRET_KEY'] = 'my$up3r$3cur3K3y'  # Your secret key
 
-    # Initialize PyMongo
-    mongo.init_app(app)
-
     # Enable CORS
     CORS(app)
+
+    # Initialize PyMongo with the app
+    mongo.init_app(app)
 
     # Import and register routes
     from .routes import api_bp
