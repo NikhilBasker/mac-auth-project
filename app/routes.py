@@ -17,10 +17,10 @@ def register():
     password = data.get('password')
     
     # MongoDB client (accessing the 'mongo' instance)
-    mongo = current_app.extensions['pymongo'][mongo]
+    mongo_instance = current_app.extensions['pymongo']
     
     # Check if username already exists
-    if find_user(mongo, username):
+    if find_user(mongo_instance, username):
         return jsonify({'message': 'Username already exists.'}), 400
 
     # Get system MAC address and hash it
@@ -30,7 +30,7 @@ def register():
     hashed_mac = hash_mac_address(mac_address)
 
     # Create new user with hashed password
-    create_user(mongo, username, password, hashed_mac)
+    create_user(mongo_instance, username, password, hashed_mac)
 
     return jsonify({'message': 'Registration successful! Please log in.'}), 201
 
@@ -42,10 +42,10 @@ def login():
     password = data.get('password')
 
     # MongoDB client (accessing the 'mongo' instance)
-    mongo = current_app.extensions['pymongo'][mongo]
+    mongo_instance = current_app.extensions['pymongo']
 
     # Fetch user document
-    user = find_user(mongo, username)
+    user = find_user(mongo_instance, username)
     if user:
         # Verify password and hashed MAC address
         mac_address = get_mac_address()
