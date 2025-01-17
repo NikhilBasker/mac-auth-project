@@ -17,7 +17,7 @@ def register():
     password = data.get('password')
     
     # MongoDB client (accessing the 'mongo' instance)
-    mongo_instance = current_app.extensions['pymongo']
+    mongo_instance = current_app.mongo
     
     # Check if username already exists
     if find_user(mongo_instance, username):
@@ -42,7 +42,7 @@ def login():
     password = data.get('password')
 
     # MongoDB client (accessing the 'mongo' instance)
-    mongo_instance = current_app.extensions['pymongo']
+    mongo_instance = current_app.mongo
 
     # Fetch user document
     user = find_user(mongo_instance, username)
