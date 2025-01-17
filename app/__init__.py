@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect, url_for
 from flask_cors import CORS
 from flask_pymongo import PyMongo
 
@@ -10,7 +10,8 @@ def create_app():
 
     # MongoDB connection URI
     app.config['MONGO_URI'] = "mongodb+srv://nikhilsaravanan944:nikhi09@mac-auth.foem3.mongodb.net/?retryWrites=true&w=majority&appName=mac-auth"
-    
+    app.config['SECRET_KEY'] = 'my$up3r$3cur3K3y'  # Your secret key
+
     # Enable CORS
     CORS(app)
 
@@ -20,5 +21,9 @@ def create_app():
     # Import and register routes
     from .routes import api_bp
     app.register_blueprint(api_bp, url_prefix='/api')
+
+    @app.route('/')
+    def home():
+        return redirect(url_for('api.register'))  # Redirect to the registration endpoint
 
     return app
