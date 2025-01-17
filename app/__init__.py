@@ -2,9 +2,6 @@ from flask import Flask
 from flask_cors import CORS
 from flask_pymongo import PyMongo
 
-# Initialize PyMongo
-mongo = PyMongo()
-
 def create_app():
     app = Flask(__name__)
 
@@ -16,7 +13,8 @@ def create_app():
     CORS(app)
 
     # Initialize PyMongo with the app
-    mongo.init_app(app)
+    mongo = PyMongo(app)
+    app.mongo = mongo
 
     # Import and register routes
     from .routes import api_bp
