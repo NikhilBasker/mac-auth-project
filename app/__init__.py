@@ -10,8 +10,7 @@ def create_app():
 
     # MongoDB connection URI
     app.config['MONGO_URI'] = "mongodb+srv://nikhilsaravanan944:nikhi09@mac-auth.foem3.mongodb.net/?retryWrites=true&w=majority&appName=mac-auth"
-    app.config['SECRET_KEY'] = 'my$up3r$3cur3K3y'  # Your secret key
-
+    
     # Enable CORS
     CORS(app)
 
