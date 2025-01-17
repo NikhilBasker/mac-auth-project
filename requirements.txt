@@ -3,3 +3,4 @@ Flask-PyMongo
 gunicorn
 werkzeug
 getmac
+flask-cors
